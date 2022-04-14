@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="card m-3" *ngFor="let movie of movies" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{movie.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Director : {{movie.director?.name}}</h6>
+            <p class="card-text">{{movie.description}}</p>
+            <a href="#" class="card-link">Details</a>
+            <a href="#" class="card-link">Delete</a>
+        </div>
+    </div>
+</div>
+
