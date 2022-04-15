@@ -8,7 +8,7 @@ import { MoviesListComponent } from './components/movies-list/movies-list.compon
 const routes: Routes = [
   { path: 'movies', component: MoviesListComponent },
   { path: 'add-movie', component: AddMovieComponent },
-  { path: 'movie-details', component: MovieDetailsComponent },
+  { path: 'movie-details/:movie_id', component: MovieDetailsComponent },
   { path: '', redirectTo: 'movies', pathMatch: 'full' }
 
 ];
