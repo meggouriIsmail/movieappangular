@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MoviesListComponent } from './components/movies-list/movies-list.component';
+import { MovieUpdateComponent } from './components/movie-update/movie-update.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MoviesListComponent } from './components/movies-list/movies-list.compon
     AppComponent,
     AddMovieComponent,
     MovieDetailsComponent,
-    MoviesListComponent
+    MoviesListComponent,
+    MovieUpdateComponent
   ],
   imports: [
     BrowserModule,

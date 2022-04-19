@@ -23,9 +23,27 @@
             placeholder="the director name">
     </div>
     <div class="form-group mb-2">
-        <label for="phone">Director Phone Number</label>
-        <input type="tel" class="form-control" name="phone" [(ngModel)]="movie.director.phone" id="phone"
-            placeholder="the director phone Number">
+        <label for="phone">Director photo Link</label>
+        <input type="tel" class="form-control" name="link" [(ngModel)]="movie.director.link" id="link"
+            placeholder="the director photo Link">
     </div>
-    <button (click)="saveMovie()" class="btn btn-primary">Save</button>
+    <div class="form-group mb-2">
+        <select class="form-select" aria-label="Actor List">
+            <option selected>Actor List</option>
+            <option *ngFor="let actor of actors" value="{{actor.actor_id}}">{{actor.firstName}} {{actor.lastName}}</option>
+          </select>
+    </div>
+    <div class="form-group m-3 container">
+        <label class="pb-2 fs-3">Categories</label>
+        <div class="row" id="checkRow">
+            <div class="col-sm-4 form-check" *ngFor="let cat of categories">
+                <input class="form-check-input" name="{{cat.name}}" type="checkbox" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{cat.name}}
+                </label>
+              </div>
+        </div>
+    </div>
+    
+    <button (click)="save()" class="btn btn-primary">Save</button>
 </form>

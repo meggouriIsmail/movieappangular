@@ -1,0 +1,28 @@
+<form>
+    <div class="form-group">
+        <label class="mb-2 fs-1" for="title">{{movieRes.title}}</label>
+        <input type="text" class="form-control" placeholder="{{movieRes.title}}"  name="title" id="title" [(ngModel)]="movie.title">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" placeholder="{{movieRes.description}}" name="description"
+            [(ngModel)]="movie.description" id="description" rows="4"></textarea>
+    </div>
+    <div class="form-group mt-2">
+        <label for="cover">Cover</label>
+        <input type="file" accept="images/*" (change)="selectImage($event)" class="form-control-file" id="cover" name="movieCover">
+        <img src="{{ movieRes.images[0].imageLink }}" class="rounded mx-auto d-block" width="200" height="200"
+            alt="...">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Director Name</label>
+        <input type="text" value="hkjsdhfgjk" class="form-control" placeholder="{{movieRes.director.name}}" name="name" [(ngModel)]="movie.director.name" id="name">
+    </div>
+    <div class="form-group mb-2">
+        <label for="phone">Director photo Link</label>
+        <input type="text" class="form-control" name="link" placeholder="{{movieRes.director.link}}" [(ngModel)]="movie.director.link" id="link" >
+    </div>
+
+    <button (click)="updateMovie(movieRes.id)" class="btn btn-primary">Save</button>
+</form>

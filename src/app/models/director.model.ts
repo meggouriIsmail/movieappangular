@@ -1,10 +1,10 @@
 export class Director {
     name: string;
-    phone: string;
+    link: string;
 
-    constructor(name: string, phone: string) {
+    constructor(name: string, link: string) {
         this.name = name;
-        this.phone = phone;
+        this.link = link;
     }
 
 }

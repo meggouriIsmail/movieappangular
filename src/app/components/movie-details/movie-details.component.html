@@ -1,22 +1,59 @@
-<div class="overlay">
-
-    <!-- The HTML5 video element that will create the background video on the header -->
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-        <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
-    </video>
-</div>
-<!-- The header content -->
-<div class="container h-100">
-    <img src="{{movie.images[0].imageLink}}" height="300px" width="250px" class="rounded mx-auto d-block" alt="...">
-    <div class="d-flex h-100 text-center align-items-center" style="color: black;">
-        <div class="w-100 text-white" style="color: black;">
-            <h1 class="display-3" style="color: black;">{{movie.title}}</h1>
-            <p class="lead mb-0"style="color: black;">{{movie.description}}</p>
-            <p class="lead mb-0"style="color: black;">{{movie.director.name}}</p>
-            <ul *ngFor="let actor of movie.actors" style="color: black;">
-                <li>{{actor.firstName}}</li>
-                <li>{{actor.lastName}}</li>
-            </ul>
+<!-- <div [innerHtml]="video" id="vid" class="trail"></div> -->
+<section class="about">
+    <div class="container m-2">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ movie.images[0].imageLink }}" class="img-fluid" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-7 d-flex flex-column justify-content-center">
+                <div class="section-title mt-4">
+                    <h2>{{ movie.title }}</h2>
+                    <p>{{ movie.description }}</p>
+                </div>
+                <hr />
+                <h5>Movie Director</h5>
+                <div class="d-flex align-items-center m-3">
+                    <div class="flex-shrink-0">
+                        <img class="img" src="{{ movie.director.link }}" />
+                    </div>
+                    <div class="flex-grow-1 ms-3 section-title">
+                        <h4 class="title">{{ movie.director.name }}</h4>
+                        <p class="description">
+                            Contrary to popular belief, Lorem Ipsum is not simply random text.
+                            It has roots in a piece of classical Latin literature from 45 BC,
+                            making it over 2000 years old. Richard McClintock.
+                        </p>
+                    </div>
+                </div>
+                <hr />
+                <h5>Movie Actors</h5>
+                <div class="d-flex align-items-center m-3" *ngFor="let actor of movie.actors">
+                    <div class="flex-shrink-0 icon-box">
+                        <img class="img" src="{{ actor.photoLink }}" />
+                    </div>
+                    <div class="flex-grow-1 ms-3 section-title">
+                        <h4 class="title">{{ actor.firstName }} {{ actor.lastName }}</h4>
+                        <p class="description">
+                            Contrary to popular belief, Lorem Ipsum is not simply random text.
+                            It has roots in a piece of classical Latin literature from 45 BC,
+                            making it over 2000 years old. Richard McClintock.
+                        </p>
+                    </div>
+                </div>
+                <hr />
+                <h5>Categories</h5>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex m-2">
+                        <button *ngFor="let cat of movie.categories" type="button" class="btn btn-dark m-1">{{ cat.name
+                            }}</button>
+                    </div>
+                    <div>
+                        <button type="button" routerLink="/update-movie/{{movie.id}}" class="btn btn-success">update</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
