@@ -44,6 +44,10 @@ export class MovieService {
     return this.httpClient.put<HttpEvent<any>>(`${baseUrl}/movie/update/${movie_id}`, data);
   }
 
+  delete(movie_id: number):  Observable<HttpEvent<any>> {
+    return this.httpClient.delete<HttpEvent<any>>(`${baseUrl}/movie/${movie_id}`);
+  }
+
   uploadImage(file: File, movie_id: number, is_cover: boolean): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);

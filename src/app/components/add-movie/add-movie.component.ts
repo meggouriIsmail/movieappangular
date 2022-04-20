@@ -15,36 +15,33 @@ import { MovieService } from 'src/app/services/movie.service';
 export class AddMovieComponent implements OnInit {
   movieCover: File | null = null;
   coverPreview: string = 'https://via.placeholder.com/200';
-  actors: Actor[];
+  actor: Actor = {
+    actor_id: 0,
+    age: 0,
+    firstName: "",
+    lastName: "",
+    photoLink: "",
+  };
   categories: Categorie[];
 
+  cat = [];
   movie: MovieResponse = {
-    id:0,
+    id: 0,
     title: '',
     description: '',
     director: {
       name: '',
       link: '',
     },
-    actors:[],
-    categories:[],
-    images:[],
-    traillers:[]
+    actors: [],
+    categories: [],
+    images: [],
+    traillers: []
   };
-  constructor(private movieService: MovieService, private router: Router) {}
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getAllActors();
     this.getAllCategories();
-  }
-
-  getAllActors(): void {
-    this.movieService.getAllActors().subscribe({
-      next: (data) => {
-        this.actors = data;
-      },
-      error:(err) => {console.error(err);}
-    });
   }
 
   getAllCategories(): void {
@@ -52,27 +49,35 @@ export class AddMovieComponent implements OnInit {
       next: (data) => {
         this.categories = data;
       },
-      error:(err) => {console.error(err);}
+      error: (err) => { console.error(err); }
     });
   }
 
-  save():void{
-    var checkRow = document.getElementById("checkRow");
-    checkRow.childNodes.forEach(c => {
-      var ch = c.firstChild;
-      if (ch["checked"]) {
-        console.log(ch["name"])
-        
+  setCat(e: Event): void {
+    e.stopPropagation();
+      if (e.target["checked"]) {
+        var newCategorie: Categorie = {
+          cat_id: 0,
+          description: "",
+          name: e.target["name"]
+        };
+        this.cat.push(newCategorie);
       }
-    })
   }
 
   saveMovie(): void {
-    
+    const act = {
+      age: this.actor.age,
+      firstName: this.actor.firstName,
+      lastName: this.actor.lastName,
+      photoLink: this.actor.photoLink
+    }
     const data = {
       title: this.movie.title,
       description: this.movie.description,
       director: this.movie.director,
+      actors: [act],
+      categories: this.cat
     };
     this.movieService.create(data).subscribe({
       next: (data) => {
