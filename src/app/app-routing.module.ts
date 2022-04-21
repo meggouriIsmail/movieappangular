@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddActorComponent } from './components/add-actor/add-actor.component';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MovieUpdateComponent } from './components/movie-update/movie-update.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'add-movie', component: AddMovieComponent },
   { path: 'movie-details/:movie_id', component: MovieDetailsComponent },
   { path: 'update-movie/:movie_id', component: MovieUpdateComponent },
+  { path: 'add-actor/:movie_id', component: AddActorComponent },
   { path: '', redirectTo: 'movies', pathMatch: 'full' }
 
 ];

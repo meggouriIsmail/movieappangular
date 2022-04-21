@@ -1,0 +1,27 @@
+<p>add-actor works!</p>
+<h3>Add Movie</h3>
+<form>
+    <div class="form-group">
+        <label for="firstName">Actor First Name</label>
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="actor.firstName" id="firstName" placeholder="the actor first name">
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Actor Last Name</label>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="actor.lastName" id="lastName"
+            placeholder="the actor last name">
+    </div>
+
+    <div class="form-group">
+        <label for="age">Actor Age</label>
+        <input type="text" class="form-control" name="age" [(ngModel)]="actor.age" id="age"
+            placeholder="the actor age">
+    </div>
+    <div class="form-group mb-2">
+        <label for="photoLink">Actor photo Link</label>
+        <input type="tel" class="form-control" name="photoLink" [(ngModel)]="actor.photoLink" id="photoLink"
+            placeholder="the actor photo Link">
+    </div>
+
+    <button (click)="saveActor()" class="btn btn-primary">Save</button>
+</form>

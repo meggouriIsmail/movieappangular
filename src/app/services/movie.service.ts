@@ -28,10 +28,14 @@ export class MovieService {
     return this.httpClient.get<Categorie[]>(`${baseUrl}/categories`);
   }
 
-  getAllHome(): Observable<MovieHome[]> {
-    return this.httpClient.get<MovieHome[]>(`${baseUrl}/movie/home`);
+  getAllHome(params: any): Observable<any> {
+    return this.httpClient.get<any>(`${baseUrl}/movie/home`, { params });
   }
-  
+
+  getAllPagination(params: any): Observable<any> {
+    return this.httpClient.get<Movie[]>(`${baseUrl}/movie/all`, { params });
+  }
+
   getById(movie_id: number): Observable<MovieResponse> {
     return this.httpClient.get<MovieResponse>(`${baseUrl}/movie/${movie_id}`);
   }
@@ -40,11 +44,15 @@ export class MovieService {
     return this.httpClient.post(`${baseUrl}/movie/add`, data);
   }
 
-  update(data: any, movie_id: number):  Observable<HttpEvent<any>> {
+  createActor(data: any): Observable<any> {
+    return this.httpClient.post(`${baseUrl}/actors/add`, data);
+  }
+
+  update(data: any, movie_id: number): Observable<HttpEvent<any>> {
     return this.httpClient.put<HttpEvent<any>>(`${baseUrl}/movie/update/${movie_id}`, data);
   }
 
-  delete(movie_id: number):  Observable<HttpEvent<any>> {
+  delete(movie_id: number): Observable<HttpEvent<any>> {
     return this.httpClient.delete<HttpEvent<any>>(`${baseUrl}/movie/${movie_id}`);
   }
 

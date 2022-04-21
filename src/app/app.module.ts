@@ -9,6 +9,8 @@ import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MoviesListComponent } from './components/movies-list/movies-list.component';
 import { MovieUpdateComponent } from './components/movie-update/movie-update.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AddActorComponent } from './components/add-actor/add-actor.component';
 
 
 @NgModule({
@@ -17,13 +19,15 @@ import { MovieUpdateComponent } from './components/movie-update/movie-update.com
     AddMovieComponent,
     MovieDetailsComponent,
     MoviesListComponent,
-    MovieUpdateComponent
+    MovieUpdateComponent,
+    AddActorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

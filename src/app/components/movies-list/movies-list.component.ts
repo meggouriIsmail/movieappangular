@@ -13,6 +13,10 @@ export class MoviesListComponent implements OnInit {
   
   movies?: MovieHome[];
   id:number;
+  page = 1;
+  count = 0;
+  pageSize = 3 ;
+
   constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,16 +24,35 @@ export class MoviesListComponent implements OnInit {
   }
 
   getAllMovies(): void {
-    this.movieService.getAllHome().subscribe(
+    const params = this.getParams(this.page, this.pageSize);
+    this.movieService.getAllHome(params).subscribe(
       {
         next: (data) => {
           console.log(data);
-          this.movies = data;
+          const {content,totalElements} = data;
+          this.movies = content;
+          this.count=totalElements;
         }, error: (err) => {
           console.error(err);
         }
       }
     );
+  }
+
+  pageChanged(event: number): void {
+    this.page = event;
+    this.getAllMovies();
+  }
+
+  getParams(page: number, pageSize: number) {
+    let params: any = {};
+    if (page) {
+      params['page'] = page - 1;
+    }
+    if (pageSize) {
+      params['size'] = pageSize;
+    }
+    return params;
   }
 
   deleteHelper(movie_id: number, event: Event): void{

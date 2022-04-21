@@ -32,6 +32,5 @@ export class MovieDetailsComponent implements OnInit {
           console.error(err);
         },
       });
-    console.log(this.route.snapshot.params['movie_id'], this.video);
   }
 }

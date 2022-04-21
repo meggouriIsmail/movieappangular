@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actor } from 'src/app/models/actor.model';
 import { Categorie } from 'src/app/models/categorie.model';
-import { MovieResponse } from 'src/app/models/movie-response.model';
-import { Movie } from 'src/app/models/movie.model';
+import { MovieResponse } from 'src/app/models/movie-response.model'; 
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -21,6 +20,7 @@ export class AddMovieComponent implements OnInit {
     firstName: "",
     lastName: "",
     photoLink: "",
+    movies: []
   };
   categories: Categorie[];
 
@@ -55,14 +55,14 @@ export class AddMovieComponent implements OnInit {
 
   setCat(e: Event): void {
     e.stopPropagation();
-      if (e.target["checked"]) {
-        var newCategorie: Categorie = {
-          cat_id: 0,
-          description: "",
-          name: e.target["name"]
-        };
-        this.cat.push(newCategorie);
-      }
+    if (e.target["checked"]) {
+      var newCategorie: Categorie = {
+        cat_id: 0,
+        description: "",
+        name: e.target["name"]
+      };
+      this.cat.push(newCategorie);
+    }
   }
 
   saveMovie(): void {
