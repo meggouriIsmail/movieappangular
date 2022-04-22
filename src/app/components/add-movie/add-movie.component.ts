@@ -64,7 +64,7 @@ export class AddMovieComponent implements OnInit {
       this.cat.push(newCategorie);
     }
   }
-
+ 
   saveMovie(): void {
     const act = {
       age: this.actor.age,

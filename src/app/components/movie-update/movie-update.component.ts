@@ -15,8 +15,8 @@ export class MovieUpdateComponent implements OnInit {
   movieCover: File | null = null;
 
   categories: Categorie[];
-
   cat = [];
+
   movie: MovieResponse = {
     id: 0,
     title: '',
@@ -45,11 +45,16 @@ export class MovieUpdateComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.movie = data;
+          this.movie.categories.forEach(c => {
+            this.categories.splice(this.categories.findIndex(ct => ct.name === c.name), 1)
+          })
+          console.log(this.categories);
         },
         error: (err) => {
           console.error(err);
         },
       });
+
   }
 
   getAllCategories(): void {
@@ -72,16 +77,29 @@ export class MovieUpdateComponent implements OnInit {
     }
   }
 
-  updateMovie(id): void {
+  updateMovie(id: number): void {
+    const ch = Array.from(document.getElementsByClassName("ch"));
+    ch.forEach(e => {
+      if (e["checked"]) {
+        var newCategorie: Categorie = {
+          cat_id: 0,
+          description: "",
+          name: e["name"]
+        };
+        this.cat.push(newCategorie);
+      }
+    });
+
     const data = {
       title: this.movie.title,
       description: this.movie.description,
       director: this.movie.director,
+      categories: this.cat
     };
     this.movieService.update(data, id).subscribe({
       next: (data) => {
-        console.log(data);
-        this.uploadCover(this.movieCover, id);
+        data;
+        this.movieCover ? this.uploadCover(this.movieCover, id) : null;
       }, error: (err) => {
         console.log(err);
       }

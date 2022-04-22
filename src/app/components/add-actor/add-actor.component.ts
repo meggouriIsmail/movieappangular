@@ -19,15 +19,17 @@ export class AddActorComponent implements OnInit {
     photoLink: "",
     movies: []
   };
+
   movie: MovieResponse;
   constructor(private movieService: MovieService, private router: Router, private actRouter: ActivatedRoute) { }
+  
+  id = this.actRouter.snapshot.params['movie_id'];
 
   ngOnInit(): void {
     this.movieService
-      .getById(this.actRouter.snapshot.params['movie_id'])
+      .getById(this.id)
       .subscribe({
         next: (data) => {
-          console.log(data);
           this.movie = data;
         },
         error: (err) => {
@@ -37,17 +39,25 @@ export class AddActorComponent implements OnInit {
   }
 
   saveActor(): void {
+    const mv = {
+      id:this.id,
+      title: this.movie.title,
+      description: this.movie.description,
+      director: this.movie.director,
+      actors: this.movie.actors
+    }
     const data = {
       age: this.actor.age,
       firstName: this.actor.firstName,
       lastName: this.actor.lastName,
       photoLink: this.actor.photoLink,
-      movies: this.actor.movies
+      movies: [mv]
     }
 
     this.movieService.createActor(data).subscribe({
       next: (data) => {
-        console.log(data);
+        data;
+        this.router.navigateByUrl(`/update-movie/${this.id}`);
       },
       error: (err) => {
         console.error(err);

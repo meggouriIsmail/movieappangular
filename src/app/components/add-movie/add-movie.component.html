@@ -11,8 +11,8 @@
             rows="2"></textarea>
     </div>
     <div class="form-group">
-        <label for="cover">Cover</label>
-        <input type="file" accept="images/*" (change)="selectImage($event)" class="form-control-file" id="cover"
+        <label for="formFile" class="form-label">Cover</label>
+        <input type="file" accept="images/*" (change)="selectImage($event)" class="form-control" id="cover"
             name="movieCover">
         <img [src]="coverPreview" class="rounded mx-auto d-block" width="200" height="200" alt="...">
     </div>

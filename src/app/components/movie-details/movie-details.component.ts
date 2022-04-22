@@ -26,7 +26,7 @@ export class MovieDetailsComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.movie = data;
-          this.video = this.sanitizer.bypassSecurityTrustHtml(this.movie.traillers[0].link);
+          //this.video = this.sanitizer.bypassSecurityTrustHtml(this.movie.traillers[0].link);
         },
         error: (err) => {
           console.error(err);

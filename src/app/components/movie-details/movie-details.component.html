@@ -4,22 +4,22 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ movie.images[0]?.imageLink }}" class="img-fluid" alt="" />
+                    <img src="{{ movie?.images[0]?.imageLink }}" class="img-fluid" alt="" />
                 </div>
             </div>
             <div class="col-lg-7 d-flex flex-column justify-content-center">
                 <div class="section-title mt-4">
-                    <h2>{{ movie.title }}</h2>
-                    <p>{{ movie.description }}</p>
+                    <h2>{{ movie?.title }}</h2>
+                    <p>{{ movie?.description }}</p>
                 </div>
                 <hr />
                 <h5>Movie Director</h5>
                 <div class="d-flex align-items-center m-3">
                     <div class="flex-shrink-0">
-                        <img class="img" src="{{ movie.director.link }}" />
+                        <img class="img" src="{{ movie?.director.link }}" />
                     </div>
                     <div class="flex-grow-1 ms-3 section-title">
-                        <h4 class="title">{{ movie.director.name }}</h4>
+                        <h4 class="title">{{ movie?.director.name }}</h4>
                         <p class="description">
                             Contrary to popular belief, Lorem Ipsum is not simply random text.
                             It has roots in a piece of classical Latin literature from 45 BC,
@@ -29,7 +29,7 @@
                 </div>
                 <hr />
                 <h5>Movie Actors</h5>
-                <div class="d-flex align-items-center m-3" *ngFor="let actor of movie.actors">
+                <div class="d-flex align-items-center m-3" *ngFor="let actor of movie?.actors">
                     <div class="flex-shrink-0 icon-box">
                         <img class="img" src="{{ actor.photoLink }}" />
                     </div>
@@ -46,11 +46,11 @@
                 <h5>Categories</h5>
                 <div class="d-flex justify-content-between">
                     <div class="d-flex m-2">
-                        <button *ngFor="let cat of movie.categories" type="button" class="btn btn-dark m-1">{{ cat.name
+                        <button *ngFor="let cat of movie?.categories" type="button" class="btn btn-dark m-1">{{ cat.name
                             }}</button>
                     </div>
                     <div>
-                        <button type="button" routerLink="/update-movie/{{movie.id}}" class="btn btn-success">update</button>
+                        <button type="button" routerLink="/update-movie/{{movie?.id}}" class="btn btn-success">update</button>
                     </div>
                 </div>
             </div>
