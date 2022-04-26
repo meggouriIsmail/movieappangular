@@ -23,7 +23,7 @@ export class AddMovieComponent implements OnInit {
     movies: []
   };
   categories: Categorie[];
-
+  actors = [];
   cat = [];
   movie: MovieResponse = {
     id: 0,
@@ -53,6 +53,20 @@ export class AddMovieComponent implements OnInit {
     });
   }
 
+  dynamicRows: number[] = [];
+
+  addNew() {
+    const act = {
+      age: this.actor.age,
+      firstName: this.actor.firstName,
+      lastName: this.actor.lastName,
+      photoLink: this.actor.photoLink
+    }
+    this.actors.push(act);
+    console.log(this.actors);
+    this.dynamicRows.push(this.dynamicRows.length);
+  }
+
   setCat(e: Event): void {
     e.stopPropagation();
     if (e.target["checked"]) {
@@ -66,17 +80,11 @@ export class AddMovieComponent implements OnInit {
   }
  
   saveMovie(): void {
-    const act = {
-      age: this.actor.age,
-      firstName: this.actor.firstName,
-      lastName: this.actor.lastName,
-      photoLink: this.actor.photoLink
-    }
     const data = {
       title: this.movie.title,
       description: this.movie.description,
       director: this.movie.director,
-      actors: [act],
+      actors: this.actors,
       categories: this.cat
     };
     this.movieService.create(data).subscribe({

@@ -11,6 +11,7 @@ import { MoviesListComponent } from './components/movies-list/movies-list.compon
 import { MovieUpdateComponent } from './components/movie-update/movie-update.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddActorComponent } from './components/add-actor/add-actor.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AddActorComponent } from './components/add-actor/add-actor.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbModule
   ],
 
   schemas: [

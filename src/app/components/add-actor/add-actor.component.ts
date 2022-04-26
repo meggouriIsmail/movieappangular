@@ -57,7 +57,9 @@ export class AddActorComponent implements OnInit {
     this.movieService.createActor(data).subscribe({
       next: (data) => {
         data;
-        this.router.navigateByUrl(`/update-movie/${this.id}`);
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  this.router.onSameUrlNavigation = 'reload';
+  this.router.navigate(['./'], { relativeTo: this.actRouter });
       },
       error: (err) => {
         console.error(err);

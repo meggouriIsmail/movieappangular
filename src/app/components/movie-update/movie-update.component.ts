@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categorie } from 'src/app/models/categorie.model';
 import { MovieResponse } from 'src/app/models/movie-response.model';
-import { Movie } from 'src/app/models/movie.model';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -99,7 +98,7 @@ export class MovieUpdateComponent implements OnInit {
     this.movieService.update(data, id).subscribe({
       next: (data) => {
         data;
-        this.movieCover ? this.uploadCover(this.movieCover, id) : null;
+        this.movieCover ? this.uploadCover(this.movieCover, id) : this.router.navigateByUrl('/movies');
       }, error: (err) => {
         console.log(err);
       }
