@@ -19,7 +19,7 @@
                         <img class="img" src="{{ movie?.director.link }}" />
                     </div>
                     <div class="flex-grow-1 ms-3 section-title">
-                        <h4 class="title">{{ movie?.director.name }}</h4>
+                        <h4 class="title">{{ movie?.director.name }} <i class="bi bi-camera-reels-fill"></i></h4>
                         <p class="description">
                             Contrary to popular belief, Lorem Ipsum is not simply random text.
                             It has roots in a piece of classical Latin literature from 45 BC,
@@ -50,7 +50,9 @@
                             }}</button>
                     </div>
                     <div>
-                        <button type="button" routerLink="/update-movie/{{movie?.id}}" class="btn btn-success">update</button>
+                        <button type="button" routerLink="/update-movie/{{movie?.id}}" class="btn btn-success">update
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
                     </div>
                 </div>
             </div>

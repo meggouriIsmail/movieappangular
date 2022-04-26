@@ -12,6 +12,7 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MovieUpdateComponent implements OnInit {
   movieCover: File | null = null;
+  coverPreview: string = 'https://via.placeholder.com/200';
 
   categories: Categorie[];
   cat = [];
@@ -44,6 +45,7 @@ export class MovieUpdateComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.movie = data;
+          this.coverPreview = this.movie.images[0].imageLink
           this.movie.categories.forEach(c => {
             this.categories.splice(this.categories.findIndex(ct => ct.name === c.name), 1)
           })
@@ -108,6 +110,7 @@ export class MovieUpdateComponent implements OnInit {
     this.movieCover = (event.target as HTMLInputElement).files.item(0);
     if ((event.target as HTMLInputElement).files.item(0)) {
       const reader = new FileReader();
+      reader.onload = (e) => (this.coverPreview = reader.result.toString());
       reader.readAsDataURL((event.target as HTMLInputElement).files.item(0));
     }
   }

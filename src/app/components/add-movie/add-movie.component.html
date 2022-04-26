@@ -44,55 +44,35 @@
     <div class="form-group m-3 row">
         <div class="form-group mt-3">
             <label class="mb-2 fs-3" for="name">Actors</label>
-            <table class="table align-middle mb-0 bg-white">
+            <table class="table table-dark table-striped table-sm">
                 <thead class="bg-light">
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Age</th>
-                        <th>PhotoLink</th>
+                        <th>Photo Link</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input type="text" class="form-control" name="firstName" [(ngModel)]="actor.firstName"
-                                id="firstName">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="lastName" [(ngModel)]="actor.lastName"
-                                id="lastName">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="age" [(ngModel)]="actor.age" id="age">
-                        </td>
-                        <td>
-                            <input type="text" accept="images/*" class="form-control" id="photoLink" [(ngModel)]="actor.photoLink" name="photoLink">
-                        </td>
-                        <td>
-                            <button *ngIf="dynamicRows.length === 0" (click)="addNew()"
-                                class="btn btn-link btn-sm btn-rounded">Add New</button>
-                        </td>
-                    </tr>
                     <tr *ngFor="let row of dynamicRows; let i = index">
                         <td>
-                            <input type="text" class="form-control" name="firstNam" [(ngModel)]="actor.firstName"
+                            <input type="text" class="form-control" name="firstName{{i}}" [(ngModel)]="movie.actors[i].firstName"
                                 id="firstName">
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="lastName" [(ngModel)]="actor.lastName"
+                            <input type="text" class="form-control" name="lastName{{i}}" [(ngModel)]="movie.actors[i].lastName"
                                 id="lastName">
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="age" [(ngModel)]="actor.age" id="age">
+                            <input type="text" class="form-control" name="age{{i}}" [(ngModel)]="movie.actors[i].age" id="age">
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="photoLink" [(ngModel)]="actor.photoLink" name="photoLink">
+                            <input type="text" class="form-control" id="photoLink" [(ngModel)]="movie.actors[i].photoLink" name="photoLink{{i}}">
                         </td>
                         <td>
                             <button *ngIf="i === dynamicRows.length - 1" (click)="addNew()"
-                                class="btn btn-link btn-sm btn-rounded">Add New</button>
+                                class="btn btn-light"><i class="bi bi-plus-square-fill"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -100,5 +80,5 @@
         </div>
     </div>
 
-    <button (click)="saveMovie()" class="btn-lg btn btn-success">Save</button>
+    <button (click)="saveMovie()" class="btn-lg btn btn-success float-end mb-4">    save</button>
 </form>

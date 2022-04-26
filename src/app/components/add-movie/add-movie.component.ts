@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actor } from 'src/app/models/actor.model';
 import { Categorie } from 'src/app/models/categorie.model';
-import { MovieResponse } from 'src/app/models/movie-response.model'; 
+import { MovieResponse } from 'src/app/models/movie-response.model';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -14,16 +14,9 @@ import { MovieService } from 'src/app/services/movie.service';
 export class AddMovieComponent implements OnInit {
   movieCover: File | null = null;
   coverPreview: string = 'https://via.placeholder.com/200';
-  actor: Actor = {
-    actor_id: 0,
-    age: 0,
-    firstName: "",
-    lastName: "",
-    photoLink: "",
-    movies: []
-  };
+  
   categories: Categorie[];
-  actors = [];
+  
   cat = [];
   movie: MovieResponse = {
     id: 0,
@@ -33,7 +26,14 @@ export class AddMovieComponent implements OnInit {
       name: '',
       link: '',
     },
-    actors: [],
+    actors: [{
+      actor_id: 0,
+      age: 0,
+      firstName: "",
+      lastName: "",
+      photoLink: "",
+      movies: []
+    }],
     categories: [],
     images: [],
     traillers: []
@@ -53,18 +53,20 @@ export class AddMovieComponent implements OnInit {
     });
   }
 
-  dynamicRows: number[] = [];
+  dynamicRows = [0];
 
   addNew() {
     const act = {
-      age: this.actor.age,
-      firstName: this.actor.firstName,
-      lastName: this.actor.lastName,
-      photoLink: this.actor.photoLink
+      actor_id: 0,
+      age: 0,
+      firstName: '',
+      lastName: '',
+      photoLink: '',
+      movies: []
     }
-    this.actors.push(act);
-    console.log(this.actors);
+    this.movie.actors.push(act);
     this.dynamicRows.push(this.dynamicRows.length);
+
   }
 
   setCat(e: Event): void {
@@ -78,13 +80,14 @@ export class AddMovieComponent implements OnInit {
       this.cat.push(newCategorie);
     }
   }
- 
+
   saveMovie(): void {
+    this.movie.actors.pop();
     const data = {
       title: this.movie.title,
       description: this.movie.description,
       director: this.movie.director,
-      actors: this.actors,
+      actors: this.movie.actors,
       categories: this.cat
     };
     this.movieService.create(data).subscribe({
