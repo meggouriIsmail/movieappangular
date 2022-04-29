@@ -1,0 +1,3 @@
+<p>login works!</p>
+<button type="submit" *ngIf="!token" (click)="login()">login</button>
+<button type="submit" *ngIf="token" (click)="logout()">logout</button>

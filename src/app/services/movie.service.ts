@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Actor } from '../models/actor.model';
@@ -32,7 +32,7 @@ export class MovieService {
     return this.httpClient.get<any>(`${baseUrl}/movie/home`, { params });
   }
 
-  getAllPagination(params: any): Observable<any> {
+  getAllPagination(params: any, headerOptions: HttpHeaders): Observable<any> {
     return this.httpClient.get<Movie[]>(`${baseUrl}/movie/all`, { params });
   }
 
