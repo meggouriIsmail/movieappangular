@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Actor } from '../models/actor.model';
 import { Categorie } from '../models/categorie.model';
-import { MovieHome } from '../models/movie-home.model';
 import { MovieResponse } from '../models/movie-response.model';
 import { Movie } from '../models/movie.model';
 
@@ -32,7 +31,7 @@ export class MovieService {
     return this.httpClient.get<any>(`${baseUrl}/movie/home`, { params });
   }
 
-  getAllPagination(params: any, headerOptions: HttpHeaders): Observable<any> {
+  getAllPagination(params: any): Observable<any> {
     return this.httpClient.get<Movie[]>(`${baseUrl}/movie/all`, { params });
   }
 
@@ -65,5 +64,9 @@ export class MovieService {
       responseType: 'json'
     });
     return this.httpClient.request(req);
+  }
+
+  createUser(data: any):Observable<any>{
+    return this.httpClient.post(`${baseUrl}/user/sign-up`, data);
   }
 }

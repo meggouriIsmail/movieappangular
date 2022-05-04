@@ -14,6 +14,8 @@ import { AddActorComponent } from './components/add-actor/add-actor.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PermissionComponent } from './components/permission/permission.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { LoginComponent } from './components/login/login.component';
     MoviesListComponent,
     MovieUpdateComponent,
     AddActorComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    PermissionComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { LoginComponent } from './components/login/login.component';
     NgbModule,
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8080'],
+          allowedUrls: ['http://localhost:8080/api/'],
           sendAccessToken: true
       }
   })

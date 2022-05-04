@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieResponse } from 'src/app/models/movie-response.model';
 import { MovieService } from 'src/app/services/movie.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -12,11 +13,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class MovieDetailsComponent implements OnInit {
   movie?: MovieResponse;
   video: SafeHtml;
+  admin:boolean=false;
 
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +34,10 @@ export class MovieDetailsComponent implements OnInit {
         error: (err) => {
           console.error(err);
         },
-      });
+    });
+    const roles = this.authService.getRoles();
+    if (roles.includes("ROLE_ADMIN")) {
+      this.admin=true;
+    }
   }
 }

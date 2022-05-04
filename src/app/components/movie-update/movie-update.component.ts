@@ -45,7 +45,7 @@ export class MovieUpdateComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.movie = data;
-          this.coverPreview = this.movie.images[0].imageLink
+          this.coverPreview = this.movie.images[0]?.imageLink
           this.movie.categories.forEach(c => {
             this.categories.splice(this.categories.findIndex(ct => ct.name === c.name), 1)
           })

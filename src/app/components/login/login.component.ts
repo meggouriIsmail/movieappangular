@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { authCodeFlowConfig } from 'src/app/config/config';
-import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -10,32 +9,31 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 })
 export class LoginComponent implements OnInit {
 
-  name: string = ""
-  constructor(private oauthService: OAuthService) { }
+  username: string = '';
+  password: string = '';
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.configureSingleSignOn();
-    const userClaims: any = this.oauthService.getIdentityClaims();
-    this.name = userClaims.name ? userClaims.name : null;
+    if (this.authService.hasValidAccessToken()) {
+      this.router.navigateByUrl("/movies");
+    }
   }
 
-  configureSingleSignOn(): void {
-    this.oauthService.configure(authCodeFlowConfig);
-    this.oauthService.tokenValidationHandler = new JwksValidationHandler;
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
-  }
 
-  login(): void {
-    this.oauthService.initCodeFlow();
-  }
+  public login(): void {
+    console.log(this.username);
+    console.log(this.password);
+    this.authService.login(this.username, this.password).then((resp) => {
 
-  logout(): void {
-    this.oauthService.logOut();
-  }
+      // Loading data about the user
+      return this.authService.loadUserProfile();
 
-  get token() :any{
-    let claims :any=this.oauthService.getIdentityClaims();
-    return claims;
+    }).then(() => {
+
+      console.log(this.authService.getRoles());
+      window.location.reload();
+    });
   }
 
 }
