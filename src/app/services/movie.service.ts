@@ -6,7 +6,7 @@ import { Categorie } from '../models/categorie.model';
 import { MovieResponse } from '../models/movie-response.model';
 import { Movie } from '../models/movie.model';
 
-const baseUrl = 'http://localhost:8080/api';
+const baseUrl = 'http://102.53.15.134:7788/api';
 
 @Injectable({
   providedIn: 'root'
