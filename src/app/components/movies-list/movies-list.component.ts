@@ -35,6 +35,8 @@ export class MoviesListComponent implements OnInit {
       {
         next: (data) => {
           console.log(data);
+          console.log("am  heeeeeeeeeeeeeeeeerrrrrrrrrrrrrrrrreeeeeeeeeeeeeee");
+          
           const { content, totalElements } = data;
           this.movies = content;
           this.count = totalElements;

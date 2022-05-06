@@ -15,15 +15,15 @@ import { Roles } from './models/roles';
 const routes: Routes = [
   {
     path: 'movies', component: MoviesListComponent, canActivate: [AuthGuard],
-    data: {
-      userRoles: [Roles.ADMIN, Roles.MODERATOR,Roles.USER]
-    }
+    // data: {
+    //   userRoles: [Roles.ADMIN, Roles.MODERATOR,Roles.USER]
+    // }
   },
   {
     path: 'add-movie', component: AddMovieComponent, canActivate: [AuthGuard],
-    data: {
-      userRoles: [Roles.ADMIN, Roles.MODERATOR]
-    }
+    // data: {
+    //   userRoles: [Roles.ADMIN, Roles.MODERATOR]
+    // }
   },
   {
     path: 'movie-details/:movie_id', component: MovieDetailsComponent, canActivate: [AuthGuard],
