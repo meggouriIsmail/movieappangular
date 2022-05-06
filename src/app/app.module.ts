@@ -39,7 +39,7 @@ import { PermissionComponent } from './components/permission/permission.componen
     NgbModule,
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8080/api/'],
+          allowedUrls: ['http://102.53.15.134:7788/api/'],
           sendAccessToken: true
       }
   })
